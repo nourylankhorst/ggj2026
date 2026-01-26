@@ -31,10 +31,10 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             movementSpeed = 10;
-            if (Input.GetKeyUp(KeyCode.LeftShift))
-            {
-                movementSpeed = 5;
-            }
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            movementSpeed = 5;
         }
     }
     private void OnCollisionEnter(Collision collision)
