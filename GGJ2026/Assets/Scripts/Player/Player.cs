@@ -3,9 +3,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Player Movement")]
-    private float movementSpeed = 4;
-    private float jumpHeight = 7;
-    private bool isGrounded = false;
+    public float movementSpeed = 4;
+    public float jumpHeight = 7;
+    public bool isGrounded = false;
     private Rigidbody rb;
     private Vector3 moveDir;
     private float hor;
