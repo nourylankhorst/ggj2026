@@ -13,23 +13,28 @@ public class start : MonoBehaviour
     {
         player.enabled = false;
         playerCam.enabled = false;
+        pauseUI.active = false;
     }
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            paused = !paused;
-            Time.timeScale = paused ? 0f : 1f;
-            player.enabled = false;
-            playerCam.enabled = false;
-            pauseUI.SetActive(true);
+            Pause();
         }
     }
     public void StartGame()
     {
         player.enabled = true;
         playerCam.enabled = true;
-        pauseUI.SetActive(false);
-        startUI.SetActive(false);
+        pauseUI.active = false;
+        startUI.active = false;
+    }
+    public void Pause()
+    {
+        paused = !paused;
+        Time.timeScale = paused ? 0f : 1f;
+        pauseUI.active = paused;
+        pauseUI.SetActive(paused);
+        playerCam.paused = !playerCam.paused;
     }
 }

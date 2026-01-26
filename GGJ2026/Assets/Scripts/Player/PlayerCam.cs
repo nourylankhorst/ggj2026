@@ -5,9 +5,12 @@ public class PlayerCam : MonoBehaviour
     public float mouseSensitivity = 400f;
     public Transform playerBody;
     float xRotation = 0f;
+    public bool paused = false;
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = !paused ? CursorLockMode.None : CursorLockMode.Locked;
+        //Cursor.visible = !paused;
     }
     void Update()
     {
