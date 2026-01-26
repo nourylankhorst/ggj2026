@@ -2,15 +2,37 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [Header("Player Movement")]
+    private float movementSpeed = 4;
+    private float jumpHeight = 7;
+    private bool isGrounded = false;
+    private Rigidbody rb;
+    private Vector3 moveDir;
+    private float hor;
+    private float vert;
+
     void Start()
     {
-        
+       rb = GetComponent<Rigidbody>(); 
     }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        hor = Input.GetAxis("Horizontal");
+        vert = Input.GetAxis("Vertical");
+        moveDir.x = hor;
+        moveDir.y = vert;
+        transform.Translate(moveDir * Time.deltaTime * movementSpeed);
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+            isGrounded = false;
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Terrain"))
+        {
+            isGrounded = true;
+        }
     }
 }
