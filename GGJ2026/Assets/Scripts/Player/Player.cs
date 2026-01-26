@@ -5,6 +5,7 @@ public class Player : MonoBehaviour
     [Header("Player Movement")]
     public float movementSpeed = 4;
     public float jumpHeight = 7;
+    public float jumps = 0;
     public bool isGrounded = false;
     private Rigidbody rb;
     private Vector3 moveDir;
@@ -26,6 +27,14 @@ public class Player : MonoBehaviour
         {
             rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
             isGrounded = false;
+        }
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            movementSpeed = 10;
+            if (Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                movementSpeed = 5;
+            }
         }
     }
     private void OnCollisionEnter(Collision collision)
