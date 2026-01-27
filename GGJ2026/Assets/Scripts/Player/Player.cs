@@ -5,12 +5,15 @@ public class Player : MonoBehaviour
     [Header("Player Movement")]
     public float movementSpeed = 4;
     public float jumpHeight = 7;
-    public float jumps = 0;
     public bool isGrounded = false;
-    private Rigidbody rb;
+    public Rigidbody rb;
     private Vector3 moveDir;
     private float hor;
     private float vert;
+
+    [Header("Extra Stuff")]
+    public string equipped;
+    public MaskOfJump maskOfJump;
 
     void Start()
     {
@@ -42,6 +45,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Terrain"))
         {
             isGrounded = true;
+            maskOfJump.totalJumps = 1;
         }
     }
 }

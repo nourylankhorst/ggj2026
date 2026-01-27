@@ -14,8 +14,8 @@ public class uIManager : MonoBehaviour
     {
         player.enabled = false;
         playerCam.enabled = false;
-        pauseUI.active = false;
-        quitUI.active = false;
+        pauseUI.SetActive(false);
+        quitUI.SetActive(false);
     }
     public void Update()
     {
@@ -28,14 +28,12 @@ public class uIManager : MonoBehaviour
     {
         player.enabled = true;
         playerCam.enabled = true;
-        pauseUI.active = false;
-        startUI.active = false;
+        startUI.SetActive(false);
     }
     public void Pause()
     {
         paused = !paused;
         Time.timeScale = paused ? 0f : 1f;
-        pauseUI.active = paused;
         pauseUI.SetActive(paused);
         playerCam.paused = !playerCam.paused;
     }
@@ -44,8 +42,8 @@ public class uIManager : MonoBehaviour
         if (quit == 0)
         {
             pauseUI.SetActive(false);
-            pauseUI.active = false;
-            quitUI.active = true;
+            pauseUI.SetActive(false);
+            quitUI.SetActive(true);
             quitUI.SetActive(true);
         }
         if (quit == 1)
