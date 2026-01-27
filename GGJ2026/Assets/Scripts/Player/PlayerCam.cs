@@ -10,7 +10,7 @@ public class PlayerCam : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.lockState = !paused ? CursorLockMode.None : CursorLockMode.Locked;
-        //Cursor.visible = !paused;
+        Cursor.visible = paused;
     }
     void Update()
     {

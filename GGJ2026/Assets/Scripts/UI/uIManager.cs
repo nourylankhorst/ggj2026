@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class start : MonoBehaviour
+public class uIManager : MonoBehaviour
 {
     // every script requires one public (class name) (<==);
     public bool paused = false;
@@ -8,12 +8,14 @@ public class start : MonoBehaviour
     public PlayerCam playerCam;
     public GameObject startUI;
     public GameObject pauseUI;
+    public GameObject quitUI;
 
     public void Start()
     {
         player.enabled = false;
         playerCam.enabled = false;
         pauseUI.active = false;
+        quitUI.active = false;
     }
     public void Update()
     {
@@ -36,5 +38,33 @@ public class start : MonoBehaviour
         pauseUI.active = paused;
         pauseUI.SetActive(paused);
         playerCam.paused = !playerCam.paused;
+    }
+    public void GameQuit(float quit)
+    {
+        if (quit == 0)
+        {
+            pauseUI.SetActive(false);
+            pauseUI.active = false;
+            quitUI.active = true;
+            quitUI.SetActive(true);
+        }
+        if (quit == 1)
+        {
+            Quit();
+        }
+        if (quit == 2)
+        {
+            quitUI.SetActive(false);
+            quitUI.active = false;
+            Pause();
+        }
+    }
+    private void Quit()
+    {
+    #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+    #else
+        Application.Quit();
+    #endif
     }
 }
