@@ -4,25 +4,25 @@ public class MaskOfJump : MonoBehaviour
 {
     public bool equipped;
     public int totalJumps = 0;
-    private Player player;
+    public Player player;
+    public RaycastHit hit;
+    private int maxDistance = 2;
+    private Vector3 origin;
+    private Vector3 direction;
     public void Update()
     {
-        if (player.equipped == "MaskOfJump")
+        if (Physics.Raycast(origin, direction, out hit, maxDistance))
         {
-            equipped = !equipped;
-            if (player.isGrounded == false && Input.GetKeyDown(KeyCode.Space) && totalJumps > 0)
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                totalJumps--;
-                player.rb.AddForce(Vector3.up * player.jumpHeight, ForceMode.Impulse);
-            }
-            else
-            {
-                totalJumps = 1;
+                equipped = true;
+                player.equipped = "MaskOfJump";
             }
         }
-        else
-        {
-            equipped = false;
-        }
+    }
+    public void Start()
+    {
+        origin = transform.position;
+        direction = transform.forward;
     }
 }
