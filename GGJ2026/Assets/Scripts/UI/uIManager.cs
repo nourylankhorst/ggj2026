@@ -53,7 +53,7 @@ public class uIManager : MonoBehaviour
         if (quit == 2)
         {
             quitUI.SetActive(false);
-            quitUI.active = false;
+            quitUI.SetActive(false);
             Pause();
         }
     }
