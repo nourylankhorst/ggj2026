@@ -1,16 +1,28 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Coin : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public string Score;
+    public float score;
+    public float scoreGain;
+    public GameObject coin;
+    public GameObject scoreUI;
+
+    private void Start()
     {
         
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            score += scoreGain;
+        }
     }
 }
